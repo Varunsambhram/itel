@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" href="assets/css/styleslogin.css">
+</head>
+<body>
+    <header class="header">
+        <h1>Welcome to One Stop Solution</h1>
+    </header>
+    <div class="main-container">
+        <div class="container">
+            <img src="assets/img/logo.jpg" alt="One Stop Solution Logo" class="graphic">
+            <h2 id="form-title">Login Page</h2>
+
+            <form id="loginForm">
+                <label for="username">Email:</label>
+                <input type="email" id="username" name="username" aria-label="Email" required>
+                <label for="password">Password:</label>
+                <input type="password" id="password" name="password" aria-label="Password" required>
+                <button type="submit">Login</button>
+                <button type="button" class="toggle-btn" onclick="toggleForms()">Sign Up</button>
+            </form>
+
+            <form id="signupForm" class="signup-form">
+                <div class="form-group">
+                    <label for="email">Email:</label>
+                    <input type="email" id="email" name="email" aria-label="Email" required>
+                </div>
+                <div class="form-group">
+                    <label for="firstName">First Name:</label>
+                    <input type="text" id="firstName" name="firstName" aria-label="First Name" required>
+                </div>
+                <div class="form-group">
+                    <label for="lastName">Last Name:</label>
+                    <input type="text" id="lastName" name="lastName" aria-label="Last Name" required>
+                </div>
+                <div class="form-group">
+                    <label for="dob">Date of Birth:</label>
+                    <input type="date" id="dob" name="dob" aria-label="Date of Birth" required>
+                </div>
+                <div class="form-group">
+                    <label for="phoneNumber">Phone Number:</label>
+                    <input type="text" id="phoneNumber" name="phoneNumber" aria-label="Phone Number" required>
+                </div>
+                <div class="form-group">
+                    <label for="signup-password">Password:</label>
+                    <input type="password" id="signup-password" name="signup-password" aria-label="Password" required>
+                </div>
+                <div class="form-group">
+                    <label for="confirm-password">Confirm Password:</label>
+                    <input type="password" id="confirm-password" name="confirm-password" aria-label="Confirm Password" required>
+                </div>
+                <button type="submit">Sign Up</button>
+                <button type="button" class="toggle-btn" onclick="toggleForms()">Login</button>
+            </form>
+
+            <form id="otpForm" class="otp-form" style="display: none;">
+                <div class="form-group">
+                    <label for="otp">Enter OTP:</label>
+                    <input type="text" id="otp" name="otp" aria-label="OTP" required>
+                </div>
+                <button type="submit">Verify OTP</button>
+            </form>
+        </div>
+
+        <div class="services-container">
+            <h2>Our Services</h2>
+            <ul class="services-list">
+                <li onclick="toggleSubservices('health')">Health
+                    <ul id="health">
+                        <li>To consult doctor</li>
+                        <li>To find a lab services</li>
+                        <li>Hospitals</li>
+                        <li>Pharmacy</li>
+                        <li>Nearest best hospital services</li>
+                        <li>Cost details and health insurance coverage details</li>
+                        <li>Elder care and Nurse service contact details</li>
+                        <li>Diagnostic center details</li>
+                        <li>Nearest Emergency services like oxygen</li>
+                        <li>Service provider registration</li>
+                    </ul>
+                </li>
+                <li onclick="toggleSubservices('education')">Education
+                    <ul id="education">
+                        <li>Learning materials</li>
+                        <li>Online Mentors</li>
+                        <li>Students</li>
+                        <li>Teachers</li>
+                        <li>School details and admission window with fee structures</li>
+                        <li>Second hand / reusable learning materials</li>
+                        <li>Nearest tuition center</li>
+                        <li>Details on Arts, music, sports, and cultural activity centers</li>
+                        <li>Industry training and job aid centers</li>
+                    </ul>
+                </li>
+                <li onclick="toggleSubservices('transportation')">Transportation
+                    <ul id="transportation">
+                        <li>Auto, 2 Wheeler, car, Bus, Air services</li>
+                        <li>Cost comparisons for services like Ola/Uber</li>
+                        <li>Nearest Vehicle service centers</li>
+                        <li>Nearest bus station and bus arrival timings</li>
+                        <li>On spot vehicle service contact details</li>
+                        <li>Buy/sell vehicles</li>
+                    </ul>
+                </li>
+                <li onclick="toggleSubservices('finance')">Finance
+                    <ul id="finance">
+                        <li>Banking</li>
+                        <li>Tax</li>
+                        <li>Insurances</li>
+                        <li>Interest rates of various banks</li>
+                        <li>Nearby bank details</li>
+                        <li>Investment opportunities</li>
+                        <li>Currency exchange services</li>
+                    </ul>
+                </li>
+                <li onclick="toggleSubservices('household')">Household
+                    <ul id="household">
+                        <li>Plumber</li>
+                        <li>Carpenter</li>
+                        <li>Painter</li>
+                        <li>Nearest Community helper contacts</li>
+                        <li>Food, Water supplier details</li>
+                        <li>Maid contacts</li>
+                        <li>Packers and movers’ details</li>
+                        <li>Details about House Renting/Purchase</li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <script>
+        let signupData = {};
+
+        function toggleForms() {
+            const loginForm = document.getElementById('loginForm');
+            const signupForm = document.getElementById('signupForm');
+            const formTitle = document.getElementById('form-title');
+
+            if (loginForm.style.display === 'none') {
+                loginForm.style.display = 'block';
+                signupForm.style.display = 'none';
+                formTitle.textContent = 'Login Page';
+            } else {
+                loginForm.style.display = 'none';
+                signupForm.style.display = 'block';
+                formTitle.textContent = 'Sign Up Page';
+            }
+        }
+
+        document.getElementById('loginForm').addEventListener('submit', async function(event) {
+            event.preventDefault();
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+
+            try {
+                const response = await fetch('/api/auth/login', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ username, password })
+                });
+                if (response.ok) {
+                    const data = await response.json();
+                    alert(data.message);
+                    window.location.href = data.redirectUrl;
+                } else {
+                    const errorMessage = await response.text();
+                    alert(errorMessage);
+                }
+            } catch (err) {
+                console.error(err);
+                alert('An error occurred. Please try again.');
+            }
+        });
+
+        document.getElementById('signupForm').addEventListener('submit', async function(event) {
+            event.preventDefault();
+            const email = document.getElementById('email').value;
+            const firstName = document.getElementById('firstName').value;
+            const lastName = document.getElementById('lastName').value;
+            const dob = document.getElementById('dob').value;
+            const phoneNumber = document.getElementById('phoneNumber').value;
+            const password = document.getElementById('signup-password').value;
+            const confirmPassword = document.getElementById('confirm-password').value;
+
+            if (password !== confirmPassword) {
+                alert('Passwords do not match+');
+                return;
+            }
+
+            signupData = { email, firstName, lastName, dob, phoneNumber, password };
+
+            try {
+                const response = await fetch('/api/auth/signup', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ email, firstName, lastName, dob, password, phoneNumber })
+                });
+                if (response.ok) {
+                    const data = await response.json();
+                    alert(data.message);
+                    document.getElementById('signupForm').style.display = 'none';
+                    document.getElementById('otpForm').style.display = 'block';
+                } else {
+                    const errorMessage = await response.text();
+                    alert(errorMessage);
+                }
+            } catch (err) {
+                console.error(err);
+                alert('An error occurred. Please try again.');
+            }
+        });
+
+        document.getElementById('otpForm').addEventListener('submit', async function(event) {
+            event.preventDefault();
+            const otp = document.getElementById('otp').value;
+
+            try {
+                const response = await fetch('/api/auth/verify-otp', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ ...signupData, otp })
+                });
+                if (response.ok) {
+                    const data = await response.json();
+                    alert(data.message);
+                    document.getElementById('otpForm').style.display = 'none';
+                    document.getElementById('loginForm').style.display = 'block';
+                } else {
+                    const errorMessage = await response.text();
+                    alert(errorMessage);
+                }
+            } catch (err) {
+                console.error(err);
+                alert('An error occurred. Please try again.');
+            }
+        });
+
+        function toggleSubservices(serviceId) {
+            const subservices = document.getElementById(serviceId);
+            if (subservices.style.display === 'none' || subservices.style.display === '') {
+                subservices.style.display = 'block';
+            } else {
+                subservices.style.display = 'none';
+            }
+        }
+    </script>
+</body>
+</html>

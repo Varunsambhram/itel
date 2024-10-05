@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>One Stop Solution - Health Services</title>
+    <link rel="stylesheet" href="assets\css\health.css">
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav>
+        <img src="assets/img/logo.jpg" alt="One Stop Solution Logo"> <!-- Add your logo here -->
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="health.html">Health</a></li>
+            <li><a href="education.html">Education</a></li>
+            <li><a href="#Transportation">Transportation</a></li>
+            <li><a href="finance.html">Finance</a></li>
+            <li><a href="#government.html">Government Services</a></li>
+            <li><a href="#Housing">Housing Services</a></li>
+            <!-- Add more categories as needed -->
+        </ul>
+    </nav>
+
+    <div class="container">
+        <h1>Health Services</h1>
+        <p>Find nearby hospitals, labs, pharmacies, and more.</p>
+        <div id="map"></div>
+
+        <!-- Health Service List -->
+        <div class="service-list">
+            <h2>Nearest Health Services:</h2>
+            <ul id="healthServices">
+                <!-- Health service items will be dynamically added here -->
+            </ul>
+        </div>
+    </div>
+
+    <!-- Load the Google Maps JavaScript API -->
+    <script
+        src="https://maps.googleapis.com/maps/api/js?key=4j2X09SfTuOUpoEoHgImcLSaV9a7WOtMvaKnNemyjic&libraries=places&callback=initMap"
+        async
+        defer
+    ></script>
+    <!-- Load external JavaScript files -->
+    <script src="js/health.js"></script>
+</body>
+</html>
